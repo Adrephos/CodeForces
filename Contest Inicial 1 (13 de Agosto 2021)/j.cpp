@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
  
 using namespace std;
  
@@ -17,24 +19,30 @@ int main(){
 	}
  
 	int tot = sum/m;
-	int aux = -1;
+	vector<int> aux;
  
 	for(int i = 0; i < n; i++){
-		if(i != aux){
-			int num = tot - vec[i];
+		int num = tot - vec[i];
+		if(find(aux.begin(), aux.end(), i+1) != aux.end()){
+			continue;
+		}else{
 			for(int j = i+1; j < n; j++){
 				if(vec[j] == num){
 					if(vec[i] > vec[j]){
 						cout<<j+1<<" "<<i+1<<endl;
-						aux = j;
+						aux.push_back(j+1);
+						aux.push_back(i+1);
 						break;
 					}else {
 						cout<<i+1<<" "<<j+1<<endl;
-						aux = j;
+						aux.push_back(i+1);
+						aux.push_back(j+1);
 						break;
 					}
+					
 				}
 			}
 		}
 	}
+	
 }
